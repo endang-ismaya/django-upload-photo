@@ -161,6 +161,6 @@ cython_debug/
 
 # Endang
 # .vscode/
-mynotes.txt
+# mynotes.txt
 resources/
 debug_logs/

@@ -1,0 +1,74 @@
+1) remove remote
+
+git remote -rm origin
+
+2) uncomment mynotes.txt and .vscode/
+3) install all requirements with pipenv
+
+pipenv install
+
+4) select python interpreter with vscode
+
+ctrl + shift + p
+select pythoninterpreter
+select project folder name that has been created
+
+5) Create Django Project
+
+django-admin startproject _project .
+
+6) Create Django additional File(s) and Folder(s)
+
+touch _project/.env
+mkdir _project/static
+mkdir apps
+mkdir templates
+mkdir media
+
+7) Update _project/.env file
+DJANGO_SECRET_KEY="django-insecure-@+*pmku!_t*cz!r3@qp_42ry18=mbt-v7$ga7*!u7u*4^x)vxr"
+DEBUG=True
+
+8) Setup env in _project/setting.py
+
+import os
+import dotenv
+
+# environment
+dotenv.read_dotenv()
+
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
+
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = os.environ.get("DEBUG") == "True"
+
+9) add template DIRS to TEMPLATES in setting.py
+
+"DIRS": [os.path.join(BASE_DIR, "templates")],
+
+10) Add Static and Media setting
+
+# STATIC
+STATIC_URL = "static/"
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "_project", "static")]
+
+# MEDIA
+MEDIA_URL = "/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+
+11) Update project's URL 
+"""
+Project URLs
+"""
+from django.contrib import admin
+from django.urls import path, include
+
+from django.conf.urls.static import static
+from django.conf import settings
+
+urlpatterns = [
+    path("admin/", admin.site.urls),
+]
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
