@@ -6,6 +6,7 @@ git remote -rm origin
 3) install all requirements with pipenv
 
 pipenv install
+pipenv install --dev
 
 4) select python interpreter with vscode
 
