@@ -3,7 +3,15 @@
   Detail View
 {% endblock title %}
 {% block content %}
-  <a href="{% url 'feeds__home' %}" style="text-decoration:none;">⬅️ Go Back</a>
-  <h3>{{ object.text }}</h3>
-  <img src="{{ object.image.url }}" alt="" style="width: 100%; height: auto;">
+  <div class="row">
+    <div class="col-sm-10 offset-sm-1 pt-5">
+      <h3>{{ object.text }}</h3>
+      <img src="{{ object.image.url }}" alt="" class="img-fluid rounded">
+      <p class="d-flex justify-center">
+        <div>
+          <a href="{% url 'feeds__home' %}" class="link-offset-2 link-underline link-underline-opacity-0">⬅️ Go Back</a>
+        </div>
+      </p>
+    </div>
+  </div>
 {% endblock content %}

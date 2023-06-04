@@ -4,16 +4,20 @@
   Home Page
 {% endblock title %}
 {% block content %}
-  <h1>All Post</h1>
-  <a href="{% url 'feeds__addpost' %}" style="text-decoration:none;">➕ Add Post</a>
-  {% for post in posts %}
-    <h3>{{ post.text }}</h3>
-    <div>
-      <a href="{% url 'feeds__detail' post.id %}">
-        {% thumbnail post.image "200x200" crop="center" as im %}
-        <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="">
-      {% endthumbnail %}
-    </a>
-  </div>
-{% endfor %}
+  <h1>All Images</h1>
+  <div class="row">
+    {% for post in posts %}
+      <div class="col-sm-6 col-md-3 mb-4">
+        <div class="card">
+          {% thumbnail post.image "200x200" crop="center" as im %}
+          <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="" class="card-img-top">
+        {% endthumbnail %}
+        <div class="card-body">
+          <p class="card-text">{{ post.text }}</p>
+          <a href="{% url 'feeds__detail' post.id %}" class="btn btn-primary">View Full Image</a>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+</div>
 {% endblock content %}

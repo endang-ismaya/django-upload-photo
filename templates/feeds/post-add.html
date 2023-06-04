@@ -3,9 +3,15 @@
   Add Post
 {% endblock title %}
 {% block content %}
-  <form action="" method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Submit</button>
-  </form>
+  <div class="row mt-5">
+    <div class="col-3"></div>
+    <div class="col-6 mt-5">
+      <form action="" method="post" enctype="multipart/form-data" class="w-100">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-success w-50">Submit</button>
+      </form>
+    </div>
+    <div class="col-3"></div>
+  </div>
 {% endblock content %}
