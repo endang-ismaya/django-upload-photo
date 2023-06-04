@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}
+  Detail View
+{% endblock title %}
+{% block content %}
+  <a href="{% url 'feeds__home' %}" style="text-decoration:none;">⬅️ Go Back</a>
+  <h3>{{ object.text }}</h3>
+  <img src="{{ object.image.url }}" alt="" style="width: 100%; height: auto;">
+{% endblock content %}
