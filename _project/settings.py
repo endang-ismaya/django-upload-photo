@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     # internal apps
     "apps.feeds",
+    # externals apps
+    "sorl.thumbnail",
 ]
 
 MIDDLEWARE = [
