@@ -1,5 +1,6 @@
 from django.views.generic import TemplateView, DetailView, FormView
 from django.urls import reverse_lazy
+from django.contrib import messages
 
 from apps.feeds.forms import PostForm
 from apps.feeds.models import Post
@@ -25,8 +26,15 @@ class PostAddView(FormView):
     form_class = PostForm
     success_url = reverse_lazy("feeds__home")
 
+    def dispatch(self, request, *args, **kwargs):
+        self.request = request
+        return super().dispatch(request, *args, **kwargs)
+
     def form_valid(self, form):
         Post.objects.create(
             text=form.cleaned_data["text"], image=form.cleaned_data["image"]
+        )
+        messages.add_message(
+            self.request, messages.SUCCESS, "Your post successfully added."
         )
         return super().form_valid(form)
