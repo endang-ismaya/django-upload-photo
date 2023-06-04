@@ -26,7 +26,7 @@ class PostAddView(FormView):
     success_url = reverse_lazy("feeds__home")
 
     def form_valid(self, form):
-        new_post = Post.objects.create(
+        Post.objects.create(
             text=form.cleaned_data["text"], image=form.cleaned_data["image"]
         )
         return super().form_valid(form)
